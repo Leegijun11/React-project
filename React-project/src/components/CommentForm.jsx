@@ -12,7 +12,7 @@ const CommentForm = ({postId, userId}) => {
         if(!commentText) return;
         addComment(postId,userId,commentText);
         setCommentText('')
-    }
+    };
     return (
         <div>
             <form onSubmit={handleSubmit}>
