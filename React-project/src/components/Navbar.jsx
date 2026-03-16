@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
-
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../UserProvider';
 const Navbar = () => {
-
+const {loginUser,setLoginUser} = useContext(UserContext)
 const [time, setTime] = useState(0)
+const [logining,setLogining] =useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,6 +15,16 @@ const [time, setTime] = useState(0)
 
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(()=>{
+    if(loginUser === null){ return}
+    else { setLogining(true)}
+  },[loginUser])
+
+  const logout = () =>{
+    setLoginUser(null)
+    setLogining(false)
+  }
     return (
     <>
 
@@ -22,6 +35,15 @@ const [time, setTime] = useState(0)
       <Link to="/messenger">메신저</Link>
       <Link to="/login">로그인</Link>
       <Link to="/signup">회원가입</Link>
+
+
+      {logining && (
+        <>
+        회원 정보 <br/>
+        ID : {loginUser.Id}
+        <button onClick={()=>logout()}>로그아웃</button>
+        </>
+      ) }
 
     </>
     );

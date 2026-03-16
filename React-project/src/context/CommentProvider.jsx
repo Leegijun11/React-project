@@ -1,13 +1,19 @@
 import React, { createContext, useState } from 'react';
-import useLocalStorage from "../hooks/useLocalStorage";
-
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useEffect } from 'react';
 export const CommentContext = createContext('')
 
 
 export const CommentProvider = ({children}) => {
-    const [comments,setComments] = useLocalStorage('comments',[]);
+    const [comments,setComments] = useLocalStorage();
 
-    
+
+    useEffect(()=>{
+        localStorage.setItem("commentText",JSON.stringify(comments))
+    },[comments])    
+
+
+
     const addComment = (postId,userId,commentText)=>{
         const now = new Date();
         const month = (now.getMonth()+1.).toString().padStart(2, '0');

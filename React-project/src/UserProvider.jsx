@@ -15,17 +15,9 @@ const UserProvider = (props) => {
         const logined = localStorage.getItem("loginUser")
         return logined ? JSON.parse(logined):null
     });
-
-    const [comments, setComments] = useState(()=>{
-        const commented = localStorage.getItem("commentText")
-        return commented ? JSON.parse(commented):[]
-    })
-
+    
     const obj = {userInfo,setUserInfo,loginUser,setLoginUser}
 
-    useEffect(()=>{
-        localStorage.setItem("commentText",JSON.stringify(comments))
-    },[comments])
 
     useEffect(()=>{
         localStorage.setItem("users",JSON.stringify(userInfo))

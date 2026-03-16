@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserProvider';
 const Login = () =>{
@@ -24,6 +24,17 @@ const Login = () =>{
             alert("아이디 또는 비밀번호가 틀렸습니다.")
         }
     }
+
+
+    useEffect(()=>{
+        if(loginUser === null){
+            return
+        }
+        else {
+            alert("로그인되어있습니다. 메인화면에서 로그아웃 후 로그인 해주세요.")
+            navigator('/Home')
+        }
+    },[])
   
     return (
         <>
