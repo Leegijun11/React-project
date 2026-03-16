@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Signup from './Signup';
+import { useState } from 'react';
+import { UserContext } from '../UserProvider';
 
 const Signup = () => {
 

@@ -11,8 +11,8 @@ import CommentForm from './components/CommentForm';
 import Messenger from './pages/Messenger';
 import ProtectedRoute from './router/ProtectedRoute';
 import ChatRoom from './pages/ChatRoom';
-
-
+import UserProvider from './UserProvider';
+import { CommentProvider } from './context/CommentProvider';
 const App = () => {
 
 
@@ -32,8 +32,10 @@ const App = () => {
           <Route path ='/postlist' element={<PostList/>}/>
           <Route path ='/postdetail' element={<PostDetail/>}/>
           <Route path ='/postform' element={<PostForm/>}/>
-          <Route path ='/commentlist' element={<CommentList/>}/>
-          <Route path ='/commentform' element={<CommentForm/>}/>
+          <CommentProvider>
+            <Route path ='/commentlist' element={<CommentList/>}/>
+            <Route path ='/commentform' element={<CommentForm/>}/>
+          </CommentProvider>
           <Route path ='/messenger' element={<Messenger/>}/>
           <Route path ='/chatroom' element={<Chatroom/>}/>
           <Route path ='/protectedroute' element={<ProtectedRoute/>}/>
