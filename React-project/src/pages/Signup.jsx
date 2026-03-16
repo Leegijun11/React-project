@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Signup from './Signup';
 
 const Signup = () => {
+
+    const {userInfo,setUserInfo} = useContext(UserContext);
+
+    const [signId,setSignId]= useState("");
+    const [signPw,setSignPw]= useState(0);
+    const navigator = useNavigate()
+
+    const signup = () => {
+        setUserInfo([...userInfo,{id:userInfo.length+1,Id:signId,Pw:signPw}])
+        setSignId("");
+        setSignPw(0);
+    }
     return (
-        <div>
-            
-        </div>
+        <>
+        <h2>회원 가입 폼</h2>
+        <input type="text" placeholder='Id를 입력하세요' onChange={(e)=>setSignId(e.target.value)} value={signId}/>
+        <input type="password" placeholder='Pw를 입력하세요'onChange={(e)=>setSignPw(e.target.value)} value ={signPw}/>
+        <button onClick={()=>signup()}>회원 가입</button>
+        </>
     );
 };
 
