@@ -12,9 +12,11 @@ const Signup = () => {
     const navigator = useNavigate()
 
     const signup = () => {
+        alert("회원가입에 성공했습니다!")
         setUserInfo([...userInfo,{id:userInfo.length+1,Id:signId,Pw:signPw}])
         setSignId("");
         setSignPw(0);
+        navigator("/login")
     }
     return (
         <>

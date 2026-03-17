@@ -18,7 +18,7 @@ const Login = () =>{
 
             setLoginId("")
             setLoginPw(0)
-            navigator("/Home")
+            navigator("/")
         }
         else {
             alert("아이디 또는 비밀번호가 틀렸습니다.")
@@ -32,7 +32,7 @@ const Login = () =>{
         }
         else {
             alert("로그인되어있습니다. 메인화면에서 로그아웃 후 로그인 해주세요.")
-            navigator('/Home')
+            navigator('/')
         }
     },[])
   
