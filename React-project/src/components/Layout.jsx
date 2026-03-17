@@ -1,11 +1,13 @@
 import React from 'react';
 
 const Layout = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+  return (
+    <div>
+      <Navbar />
+      <Timer />
+      <Outlet />
+    </div>
+  )
+}
 
-export default Layout;
+export default Layout
