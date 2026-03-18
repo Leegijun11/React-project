@@ -12,11 +12,18 @@ const Signup = () => {
     const navigator = useNavigate()
 
     const signup = () => {
+        if(userInfo.some((i)=>i.Id === signId)){
+            alert("이미 해당 아이디로 가입이 되어있습니다")
+            setSignId("")
+            setSignPw(0)
+        }
+        else {
         alert("회원가입에 성공했습니다!")
         setUserInfo([...userInfo,{id:userInfo.length+1,Id:signId,Pw:signPw}])
         setSignId("");
         setSignPw(0);
         navigator("/")
+        }
     }
     const handleKeyDown = (e) => {
     if (e.key === "Enter") {
