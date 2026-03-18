@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
-import { UserContext } from '../UserProvider';
+import { UserContext } from '../context/UserProvider';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 const Signup = () => {
@@ -16,13 +16,18 @@ const Signup = () => {
         setUserInfo([...userInfo,{id:userInfo.length+1,Id:signId,Pw:signPw}])
         setSignId("");
         setSignPw(0);
-        navigator("/login")
+        navigator("/")
+    }
+    const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+        signup();
+    }
     }
     return (
         <>
         <h2>회원 가입 폼</h2>
-        <input type="text" placeholder='Id를 입력하세요' onChange={(e)=>setSignId(e.target.value)} value={signId}/>
-        <input type="password" placeholder='Pw를 입력하세요'onChange={(e)=>setSignPw(e.target.value)} value ={signPw}/>
+        <input type="text" placeholder='Id를 입력하세요'onKeyDown={handleKeyDown} onChange={(e)=>setSignId(e.target.value)} value={signId}/>
+        <input type="password" placeholder='Pw를 입력하세요' onKeyDown={handleKeyDown} onChange={(e)=>setSignPw(e.target.value)} value ={signPw}/>
         <button onClick={()=>signup()}>회원 가입</button>
         </>
     );

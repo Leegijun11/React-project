@@ -1,17 +1,27 @@
 import { useState } from "react";
 
 export const useLocalStorage_list = (obj) => {
-  const [value, setValue] = useState(()=>{
+  const [value, setValue] = useState(() => {
     try {
-      const obj2 = localStorage.getItem(obj)
+      const obj2 = localStorage.getItem(obj);
       return obj2 ? JSON.parse(obj2) : [];
-  
-    }
-    catch (error){
+    } catch (error) {
       localStorage.removeItem(obj);
-      return []
+      return [];
     }
+  });
+  return [value, setValue];
+};
 
-  })
-  return [value,setValue];
-}
+export const useLocalStorage_null = (obj) => {
+  const [value, setValue] = useState(() => {
+    try {
+      const obj2 = localStorage.getItem(obj);
+      return obj2 ? JSON.parse(obj2) : null;
+    } catch (error) {
+      localStorage.removeItem(obj);
+      return null;
+    }
+  });
+  return [value, setValue];
+};
