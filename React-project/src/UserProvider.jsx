@@ -1,14 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { useLocalStorage_list } from './hooks/useLocalStorage';
+import  useLocalStorage  from './hooks/useLocalStorage';
 
 export const UserContext = createContext()
 
 
 const UserProvider = (props) => {
 
-    const [userInfo,setUserInfo] = useLocalStorage_list("users")
+    const [userInfo,setUserInfo] = useLocalStorage("users")
 
-    const [loginUser,setLoginUser] = useLocalStorage_list("loginUser")
+    const [loginUser,setLoginUser] = useLocalStorage("loginUser")
     
     const obj = {userInfo,setUserInfo,loginUser,setLoginUser}
 

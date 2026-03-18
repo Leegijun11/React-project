@@ -15,6 +15,9 @@ import UserProvider from './UserProvider';
 import { CommentProvider } from './context/CommentProvider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import MessageList from './components/MessageList';
+import MessageInput from './components/MessageInput';
+
 const App = () => {
   return (
     

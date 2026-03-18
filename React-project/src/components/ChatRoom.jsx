@@ -1,6 +1,6 @@
 import React from "react";
-import MessageList from "./MessageList";
-import MessageInput from "./MessageInput";
+import MessageList from '../components/MessageList';
+import MessageInput from '../components/MessageInput';
 
 const ChatRoom = ({ messages, onSend }) => {
   return (
