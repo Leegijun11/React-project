@@ -1,12 +1,12 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useLocalStorage_list } from "../hooks/useLocalStorage";
 import ChatRoom from "../components/ChatRoom";
 import UserList from "../components/UserList";
 
 const Messenger = () => {
   const { currentUser } = useAuth();
-  const [messages, setMessages] = useLocalStorage("messages", []);
+  const [messages, setMessages] = useLocalStorage("messages");
   const [users] = useLocalStorage("users", []);
 
   if (!currentUser) {

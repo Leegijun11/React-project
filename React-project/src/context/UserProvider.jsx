@@ -6,7 +6,7 @@ export const UserContext = createContext()
 
 const UserProvider = (props) => {
 
-    const [userInfo,setUserInfo] = useLocalStorage("users")
+    const [userInfo,setUserInfo] = useLocalStorage_list("users")
 
     const [loginUser,setLoginUser] = useLocalStorage_null("loginUser")
     

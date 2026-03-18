@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
-import  useLocalStorage  from '../hooks/useLocalStorage';
 import { useEffect } from 'react';
+import { useLocalStorage_list } from './../hooks/useLocalStorage';
 export const CommentContext = createContext('')
 
 
 export const CommentProvider = ({children}) => {
-    const [comments,setComments] = useLocalStorage("comments");
+    const [comments,setComments] = useLocalStorage_list("comments");
 
 
     useEffect(()=>{
