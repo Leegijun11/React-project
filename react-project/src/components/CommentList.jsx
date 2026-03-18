@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useComments } from '../context/CommentProvider';
 
-const CommentForm = ({postId, userId}) => {
+const CommentList = ({postId,userId}) => {    
+    const { comments, deleteComent} =useComments();
 
-    const [commentText,setCommentText]=useState('');
-    const { addComment } = useComments();
+    const postComments = comments.filter((c)=> c.postId === postId);
 
-    
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        if(!commentText) return;
-        addComment(postId,userId,commentText);
-        setCommentText('')
-    };
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input value={commentText} 
-                onChange={(e)=>setCommentText(e.target.value)} 
-                placeholder='댓글 작성'/>   
-                <button type='submit'>등록</button>     
-            </form>            
-        </div>
+        <ul>
+            {postComments.length === 0 && <p>댓글이 없습니다</p>}
+            {postComments.map((c)=>(
+                <li key={c.id}>{c.userId} : {c.commentText}
+                <button onClick={()=>{deleteComent(c.id)}} >삭제</button>
+                </li>
+            ))
+            }
+        </ul>
     );
 };
 
-export default CommentForm;
+export default CommentList;
