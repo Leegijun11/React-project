@@ -4,7 +4,6 @@ const Layout = () => {
   return (
     <div>
       <Navbar />
-      <Timer />
       <Outlet />
     </div>
   )

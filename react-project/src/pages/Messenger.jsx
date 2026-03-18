@@ -1,15 +1,16 @@
-import React from "react";
-import { useAuth } from "../context/AuthContext";
-import { useLocalStorage_list } from "../hooks/useLocalStorage";
+import React, { useContext } from "react";
+import useAuth from "../hooks/useAuth";
+import { useLocalStorage_list, useLocalStorage_null } from "../hooks/useLocalStorage";
 import ChatRoom from "../components/ChatRoom";
 import UserList from "../components/UserList";
+import { UserContext } from './../context/UserProvider';
 
 const Messenger = () => {
-  const { currentUser } = useAuth();
+  const { loginUser } = useAuth();
   const [messages, setMessages] = useLocalStorage_list("messages");
-  const [users] = useLocalStorage("users", []);
+  const [users] = useLocalStorage_list("users");
 
-  if (!currentUser) {
+  if (!loginUser) {
     return <div>로그인 후 이용 가능합니다.</div>;
   }
 
@@ -19,7 +20,7 @@ const Messenger = () => {
     const newMessage = {
       id: Date.now(),
       roomId: "global",
-      sender: currentUser.name,
+      sender: loginUser.name,
       text: text,
       createdAt: new Date().toLocaleString(),
     };
