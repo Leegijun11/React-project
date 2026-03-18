@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage_list } from "../hooks/useLocalStorage";
+import { UserContext } from "../context/UserProvider";
 
 const PostList=() => {
 
-  const [posts, setPosts]=useState([])
+  const [posts, setPosts]=useLocalStorage_list("posts")
   const navigate =useNavigate()
+  const {loginUser} = useContext(UserContext)
 
-  useEffect(() =>{
-    const savedPosts = JSON.parse(localStorage.getItem("posts")) || []
-    setPosts(savedPosts);
-  }, [])
-
+  useEffect(()=>{
+    if(loginUser ===null){
+      alert("로그인 후 게시글 등록이 가능합니다!")
+      navigate("/")
+    }
+  },[])
   const deletePost = (id)=>{
 
     const updatedPosts = posts.filter((post) => post.id !== id)

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../UserProvider';
+import { UserContext } from '../context/UserProvider';
 const Navbar = () => {
 const {loginUser,setLoginUser} = useContext(UserContext)
 const [time, setTime] = useState(0)

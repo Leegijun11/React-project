@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { UserContext } from '../UserProvider';
+import { UserContext } from '../context/UserProvider';
 const Login = () =>{
 
     
@@ -24,7 +24,11 @@ const Login = () =>{
             alert("아이디 또는 비밀번호가 틀렸습니다.")
         }
     }
-
+    const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+        log();
+    }
+    }
 
     useEffect(()=>{
         if(loginUser === null){
@@ -40,8 +44,8 @@ const Login = () =>{
         <>
 
         <h2>로그인 폼</h2>
-        <input type="text" placeholder='Id를 입력하세요' onChange={(e)=>setLoginId(e.target.value)} value={loginId}/>
-        <input type="password" placeholder='Pw를 입력하세요'onChange={(e)=>setLoginPw(e.target.value)} value ={loginPw}/>
+        <input type="text" placeholder='Id를 입력하세요' onKeyDown={handleKeyDown} onChange={(e)=>setLoginId(e.target.value)} value={loginId}/>
+        <input type="password" placeholder='Pw를 입력하세요' onKeyDown={handleKeyDown} onChange={(e)=>setLoginPw(e.target.value)} value ={loginPw}/>
         <button onClick={()=>log()}>로그인</button>
         </>
     );
