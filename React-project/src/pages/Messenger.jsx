@@ -6,7 +6,7 @@ import UserList from "../components/UserList";
 
 const Messenger = () => {
   const { currentUser } = useAuth();
-  const [messages, setMessages] = useLocalStorage("messages");
+  const [messages, setMessages] = useLocalStorage_list("messages");
   const [users] = useLocalStorage("users", []);
 
   if (!currentUser) {
