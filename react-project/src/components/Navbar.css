@@ -1,0 +1,70 @@
+/* ===================== */
+/*        Navbar         */
+/* ===================== */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f2937; /* secondary-color */
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 좌/중/우 영역 */
+.navbar-left,
+.navbar-center,
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 왼쪽: 사용시간 */
+.navbar-left {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* 중앙: 메뉴 버튼 */
+.navbar-center {
+  flex: 1;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navbar-center a {
+  color: white;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar-center a:hover {
+  color: #4a90e2; /* primary-color */
+}
+
+/* 오른쪽: 로그인/회원정보 + 로그아웃 */
+.navbar-right {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.navbar-right span {
+  font-weight: 500;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    justify-content: center;
+  }
+}

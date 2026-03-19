@@ -1,0 +1,99 @@
+.messenger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.messenger-window {
+  width: 400px;
+  max-height: 600px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.messenger-header {
+  background: #4a90e2;
+  color: white;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messenger-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.messenger-body {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  background: #f0f0f0;
+}
+
+.receiver-select {
+  margin-bottom: 10px;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.message.me {
+  background: #4a90e2;
+  color: white;
+  align-self: flex-end;
+}
+
+.message.other {
+  background: #e0e0e0;
+  color: #333;
+  align-self: flex-start;
+}
+
+.messenger-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.messenger-input input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.messenger-input button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
