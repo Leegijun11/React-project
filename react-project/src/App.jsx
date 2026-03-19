@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -15,33 +15,48 @@ import UserProvider from './context/UserProvider';
 import { CommentProvider } from './context/CommentProvider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import './App.css';
+
 const App = () => {
+  const [openMessenger, setOpenMessenger] = useState(false); // 모달 상태
+  const [chatUser, setChatUser] = useState(null);
 
-
-
+const closeChat = () => setChatUser(null);
+const openChat = (userId) => {
+    setChatUser(userId);      // ChatRoom 열기
+    setOpenMessenger(false);  // Messenger 모달 닫기
+  };
 
   return (
-    
-
-    <UserProvider> {/* userId , userPw, comment*/}
+    <UserProvider>
       <CommentProvider>
-      <BrowserRouter>
-        <Navbar /> {/*상단 바 (홈, 메신저, 게시글, 회원가입, 로그인 탭) ,우측 상단?에 로그인 상태와 사용자 정보 */} 
-        <Routes>
-          <Route path ='/' element={<Home/>}/>
-          <Route path ='/login' element={<Login/>}/>
-          <Route path ='/signup' element={<Signup/>}/>
-          <Route path ='/postlist' element={<PostList/>}/>
-          <Route path ='/postdetail' element={<PostDetail/>}/>
-          <Route path ='/postform' element={<PostForm/>}/>
+        <BrowserRouter>
+          {/* Navbar에 openMessenger 함수 전달 */}
+          <Navbar openMessenger={() => setOpenMessenger(true)} />
+
+          <Routes>
+            <Route path ='/' element={<Home/>}/>
+            <Route path ='/login' element={<Login/>}/>
+            <Route path ='/signup' element={<Signup/>}/>
+            <Route path ='/postlist' element={<PostList/>}/>
+            <Route path ='/postdetail' element={<PostDetail/>}/>
+            <Route path ='/postform' element={<PostForm/>}/>
             <Route path ='/commentlist' element={<CommentList/>}/>
             <Route path ='/commentform' element={<CommentForm/>}/>
-          <Route path ='/messenger' element={<Messenger/>}/>
-          <Route path ='/chatroom' element={<ChatRoom/>}/>
-          <Route path ='/protectedroute' element={<ProtectedRoute/>}/>
-        </Routes>  
-        <Footer /> {/*하단 바 (프로젝트 정보, 제작자 정보, 간단한 안내 문구) */} 
-      </BrowserRouter>
+            <Route path ='/chatroom' element={<ChatRoom/>}/>
+            <Route path ='/protectedroute' element={<ProtectedRoute/>}/>
+          </Routes>  
+
+          <Footer />
+
+          {/* Messenger 모달 */}
+          {openMessenger && (
+            <Messenger onClose={() => setOpenMessenger(false)} openChat={openChat}/>
+          )}
+          {chatUser && (
+            <ChatRoom userId={chatUser} onClose={closeChat} />
+          )}
+        </BrowserRouter>
       </CommentProvider>
     </UserProvider>
   );
