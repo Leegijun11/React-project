@@ -1,5 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import CommentList from "../components/CommentList";
+import CommentForm from "../components/CommentForm";
 
 const PostDetail = () => {
   const location = useLocation();
@@ -82,9 +84,26 @@ const PostDetail = () => {
         }}>
           {post.content}
         </p>
+          <button
+            onClick={() => navigate("/postform", { state: { post } })}
+            style={{
+              padding: '9px 20px', borderRadius: '8px', fontSize: '13px',
+              fontWeight: '600', border: '1.5px solid #c7d2fe',
+              background: '#fff', color: '#6366f1', cursor: 'pointer',
+            }}
+            onMouseEnter={e => e.target.style.background = '#ede9fe'}
+            onMouseLeave={e => e.target.style.background = '#fff'}
+          >
+            수정
+          </button>
+              <h3>댓글 작성</h3>
+      <CommentForm postId={post.id}/>
+      <h3>댓글 목록</h3>
+      <CommentList postId={post.id} />
 
         {/* 하단 버튼 */}
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+
           <button
             onClick={() => navigate("/postlist")}
             style={{

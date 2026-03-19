@@ -7,11 +7,18 @@ export const useLocalStorage_list = (obj) => {
       return obj2 ? JSON.parse(obj2) : [];
     } catch (error) {
       localStorage.removeItem(obj);
+
       return [];
     }
   });
+
+useEffect(()=>{
+    localStorage.setItem(obj, JSON.stringify(value))
+  },[obj,value]);
+
   return [value, setValue];
 };
+
 
 export const useLocalStorage_null = (obj) => {
   const [value, setValue] = useState(() => {
