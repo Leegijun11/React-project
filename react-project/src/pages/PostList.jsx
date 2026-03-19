@@ -110,7 +110,8 @@ const PostList = () => {
                   {post.title}
                 </span>
               </div>
-
+            {(post.Id === loginUser?.Id)? (
+              <>
               {/* 버튼 */}
               <div style={{ display: 'flex', gap: '6px', flexShrink: 0 }}>
                 <button
@@ -138,6 +139,12 @@ const PostList = () => {
                   삭제
                 </button>
               </div>
+              </>
+            ) : (
+              <>
+              </>
+            )}
+
             </li>
           ))}
         </ul>

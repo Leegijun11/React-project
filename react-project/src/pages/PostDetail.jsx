@@ -86,18 +86,6 @@ const PostDetail = () => {
         {/* 하단 버튼 */}
         <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
           <button
-            onClick={() => navigate("/postform", { state: { post } })}
-            style={{
-              padding: '9px 20px', borderRadius: '8px', fontSize: '13px',
-              fontWeight: '600', border: '1.5px solid #c7d2fe',
-              background: '#fff', color: '#6366f1', cursor: 'pointer',
-            }}
-            onMouseEnter={e => e.target.style.background = '#ede9fe'}
-            onMouseLeave={e => e.target.style.background = '#fff'}
-          >
-            수정
-          </button>
-          <button
             onClick={() => navigate("/postlist")}
             style={{
               padding: '9px 20px', borderRadius: '8px', background: '#4f46e5',

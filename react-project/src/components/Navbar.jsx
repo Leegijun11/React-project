@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import { useLocalStorage_zero } from '../hooks/useLocalStorage';
 
 const Navbar = () => {
   const { loginUser, setLoginUser } = useAuth();
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(() => {
+  const savedTime = localStorage.getItem("useTime");
+  return savedTime ? parseInt(savedTime, 10) : 0;
+  });
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
   const navigator = useNavigate()
 
+
   useEffect(() => {
-    const timer = setInterval(() => setTime(prev => prev + 1), 1000);
-    return () => clearInterval(timer);
+  const timer = setInterval(() => {
+    setTime(prev => {
+      const newTime = prev + 1;
+      localStorage.setItem("useTime", newTime);
+      return newTime;
+    });
+  }, 1000);
+
+  return () => clearInterval(timer);
   }, []);
 
+  
   const logout = () => {
     setLoginUser(null);
     setShowDropdown(false);
+    alert("로그아웃이 되어 메인화면으로 이동합니다.")
     navigator("/")
   };
 

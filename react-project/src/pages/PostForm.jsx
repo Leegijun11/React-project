@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const PostForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const editPost = location.state?.post;
-
+  const { loginUser} = useAuth()
+  const [Id, setA] = useState(loginUser.Id)
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    if (editPost) {
+    if (editPost && loginUser) {
       setTitle(editPost.title);
       setContent(editPost.content);
     }
@@ -27,11 +29,11 @@ const PostForm = () => {
 
     if (editPost) {
       const updatedPosts = posts.map((post) =>
-        post.id === editPost.id ? { ...post, title, content } : post
+        post.id === editPost.id ? { ...post, a, title, content } : post
       );
       localStorage.setItem("posts", JSON.stringify(updatedPosts));
     } else {
-      posts.push({ id: Date.now(), title, content });
+      posts.push({ id: Date.now(), Id,title, content });
       localStorage.setItem("posts", JSON.stringify(posts));
     }
 
