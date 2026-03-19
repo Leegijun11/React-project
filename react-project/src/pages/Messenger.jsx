@@ -13,6 +13,11 @@ const Messenger = () => {
   const [receiver, setReceiver] = useState("모두");
   const navigate = useNavigate();
 
+  useEffect(()=>{
+        localStorage.setItem("messages",JSON.stringify(messages))
+  },[messages])
+
+
   if (!loginUser) {
     return (
       <div style={{ textAlign: 'center', padding: '3rem' }}>
@@ -22,9 +27,6 @@ const Messenger = () => {
     );
   }
 
-  useEffect(()=>{
-        localStorage.setItem("messages",JSON.stringify(messages))
-  },[messages])
   const sendMessage = () => {
     if (!text.trim()) return;
     const newMessage = {

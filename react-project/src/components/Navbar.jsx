@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [time, setTime] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
+  const navigator = useNavigate()
 
   useEffect(() => {
     const timer = setInterval(() => setTime(prev => prev + 1), 1000);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const logout = () => {
     setLoginUser(null);
     setShowDropdown(false);
+    navigator("/")
   };
 
   const formatTime = (sec) => {
