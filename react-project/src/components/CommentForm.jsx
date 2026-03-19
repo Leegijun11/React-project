@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useComments } from '../context/CommentProvider';
+import { UserContext  } from '../context/UserProvider';
 
-const CommentForm = ({postId, userId}) => {
+const CommentForm = ({ postId }) => {
+    const { loginUser }= useContext(UserContext);
+    const userId = loginUser?.ld;
+    const userName = loginUser?.ld;
 
     const [commentText,setCommentText]=useState('');
     const { addComment } = useComments();
@@ -9,8 +13,8 @@ const CommentForm = ({postId, userId}) => {
     
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if(!commentText) return;
-        addComment(postId,userId,commentText);
+        if(!commentText.trim()) return;
+        addComment(postId,userName,commentText);
         setCommentText('')
     };
     return (

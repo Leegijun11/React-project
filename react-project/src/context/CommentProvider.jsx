@@ -1,22 +1,16 @@
-import React, { createContext, useState } from 'react';
-import { useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { useLocalStorage_list } from './../hooks/useLocalStorage';
 export const CommentContext = createContext('')
 
 
 export const CommentProvider = ({children}) => {
-    const [comments,setComments] = useLocalStorage_list("comments");
 
-
-    useEffect(()=>{
-        localStorage.setItem("commentText",JSON.stringify(comments))
-    },[comments])    
-
+    const [comments,setComments] = useLocalStorage_list("comments"); 
 
 
     const addComment = (postId,userId,commentText)=>{
         const now = new Date();
-        const month = (now.getMonth()+1.).toString().padStart(2, '0');
+        const month = (now.getMonth()+1).toString().padStart(2, '0');
         const day = now.getDate().toString().padStart(2, '0');
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
@@ -48,4 +42,4 @@ export const CommentProvider = ({children}) => {
 
 export const useComments = () => useContext(CommentContext);
 
-export default CommentContext;
+export default CommentProvider;
