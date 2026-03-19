@@ -15,6 +15,7 @@ import UserProvider from './context/UserProvider';
 import { CommentProvider } from './context/CommentProvider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Messages from './pages/Messages';
 const App = () => {
 
 
@@ -37,6 +38,7 @@ const App = () => {
             <Route path ='/commentlist' element={<CommentList/>}/>
             <Route path ='/commentform' element={<CommentForm/>}/>
           <Route path ='/messenger' element={<Messenger/>}/>
+          <Route path ='/messages' element={<Messages/>}/>
           <Route path ='/chatroom' element={<ChatRoom/>}/>
           <Route path ='/protectedroute' element={<ProtectedRoute/>}/>
         </Routes>  

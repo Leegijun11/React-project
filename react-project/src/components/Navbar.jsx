@@ -30,6 +30,7 @@ const Navbar = () => {
     { to: '/messenger', label: '메신저' },
     { to: '/login', label: '로그인' },
     { to: '/signup', label: '회원가입' },
+    { to: '/messages', label : "메신저함"}
   ];
 
   return (
