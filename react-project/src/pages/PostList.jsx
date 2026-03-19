@@ -2,11 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage_list } from "../hooks/useLocalStorage";
 import { UserContext } from "../context/UserProvider";
+import useAuth from "../hooks/useAuth";
 
 const PostList = () => {
   const [posts, setPosts] = useLocalStorage_list("posts");
   const navigate = useNavigate();
-  const { loginUser } = useContext(UserContext);
+  const { loginUser } = useAuth();
 
   useEffect(() => {
     if (loginUser === null) {

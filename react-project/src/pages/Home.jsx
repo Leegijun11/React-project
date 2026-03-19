@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserProvider';
 import { useLocalStorage_list } from '../hooks/useLocalStorage';
+import useAuth from './../hooks/useAuth';
 
 const Home = () => {
-  const { loginUser } = useContext(UserContext);
+  const { loginUser } = useAuth();
   const [userInfo] = useLocalStorage_list("users");
   const isAdmin = loginUser?.Id === "admin" && loginUser?.Pw === "admin";
 

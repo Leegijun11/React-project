@@ -2,9 +2,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserContext } from '../context/UserProvider';
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
-  const { userInfo, loginUser, setLoginUser } = useContext(UserContext);
+  const { userInfo, loginUser, setLoginUser } = useAuth();
   const [loginId, setLoginId] = useState("");
   const [loginPw, setLoginPw] = useState("");
   const navigator = useNavigate();
